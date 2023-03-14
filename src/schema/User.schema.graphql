@@ -1,0 +1,56 @@
+type user {
+  id: Int
+  first_name: String
+  last_name: String
+  username: String
+  email: String
+  role: String
+  created_at: String
+}
+
+input UserPayload {
+  email: String!
+  first_name: String!
+  last_name: String!
+  username: String!
+  role: String
+}
+
+input CreateUserPayload {
+  email: String!
+  first_name: String!
+  password: String
+  last_name: String!
+  role: String
+  username: String!
+}
+
+input UsersFilter {
+  rpp: String
+  page: String
+  sort: String
+  search: String
+}
+
+type Pagination {
+  rpp: Int
+  currentPage: Int
+  nextPage: Int
+  totalPages: Int
+}
+
+type UsersResType  {
+  result: [user]
+  pagination: Pagination
+}
+
+type Query {
+  users(filter: UsersFilter): UsersResType
+  user(id: ID!): user
+}
+
+type Mutation {
+  createUser(data: CreateUserPayload!): user
+  updateUser(id: ID!, data: UserPayload!): user
+  deleteUser(id: ID!): user
+}

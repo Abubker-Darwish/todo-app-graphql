@@ -1,0 +1,24 @@
+type task {
+  id: ID
+  description: String
+  title: String
+  completed: Boolean
+  created_at: String
+}
+
+type Query {
+  tasks: [task]
+  task(id: ID!): task
+}
+
+input CreateTaskPayload {
+  description: String
+  title: String
+  completed: Boolean
+}
+
+type Mutation {
+  createTask(data: CreateTaskPayload!): task
+  deleteTask(id: ID!): task
+  updateTask(id: ID!, data: CreateTaskPayload!): task
+}

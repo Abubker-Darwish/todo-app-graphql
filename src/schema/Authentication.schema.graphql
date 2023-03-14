@@ -1,0 +1,36 @@
+input LoginPayload {
+  username: String!
+  password: String!
+}
+
+input SignUpUserPayload {
+  email: String!
+  first_name: String!
+  password: String
+  last_name: String!
+  username: String!
+}
+
+type userLoginRes {
+  id: Int
+  first_name: String
+  last_name: String
+  username: String
+  email: String
+  role: String
+  created_at: String
+}
+
+type loginRes {
+  user: userLoginRes
+  token: String
+}
+
+type Query {
+  current_user: userLoginRes
+}
+
+type Mutation {
+  login(data: LoginPayload!): loginRes
+  signUp(data: SignUpUserPayload!): loginRes
+}
